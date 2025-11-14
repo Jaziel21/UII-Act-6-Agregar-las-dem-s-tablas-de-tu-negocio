@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}Actualizar Autor - Librería AJMG{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="main-content">
+            <h2 class="mb-4 text-warning">
+                <i class="fas fa-edit me-2"></i>Actualizar Autor
+            </h2>
+            
+            <form method="POST" action="{% url 'realizar_actualizacion_autor' autor.id %}">
+                {% csrf_token %}
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="nombre" class="form-label">Nombre completo *</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" 
+                               value="{{ autor.nombre }}" required>
+                    </div>
+                    
+                    <div class="col-md-6 mb-3">
+                        <label for="nacionalidad" class="form-label">Nacionalidad *</label>
+                        <input type="text" class="form-control" id="nacionalidad" name="nacionalidad" 
+                               value="{{ autor.nacionalidad }}" required>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="fecha_nacimiento" class="form-label">Fecha de nacimiento *</label>
+                        <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" 
+                               value="{{ autor.fecha_nacimiento|date:'Y-m-d' }}" required>
+                    </div>
+                    
+                    <div class="col-md-6 mb-3">
+                        <label for="fecha_fallecimiento" class="form-label">Fecha de fallecimiento</label>
+                        <input type="date" class="form-control" id="fecha_fallecimiento" name="fecha_fallecimiento" 
+                               value="{{ autor.fecha_fallecimiento|date:'Y-m-d' }}">
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email de contacto</label>
+                    <input type="email" class="form-control" id="email" name="email" 
+                           value="{{ autor.email }}">
+                </div>
+                
+                <div class="mb-3">
+                    <label for="biografia" class="form-label">Biografía</label>
+                    <textarea class="form-control" id="biografia" name="biografia" rows="4">{{ autor.biografia }}</textarea>
+                </div>
+                
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="activo" name="activo" 
+                           {% if autor.activo %}checked{% endif %}>
+                    <label class="form-check-label" for="activo">Autor activo</label>
+                </div>
+                
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a href="{% url 'ver_autores' %}" class="btn btn-secondary me-md-2">
+                        <i class="fas fa-arrow-left me-1"></i>Cancelar
+                    </a>
+                    <button type="submit" class="btn btn-warning">
+                        <i class="fas fa-save me-1"></i>Actualizar Autor
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

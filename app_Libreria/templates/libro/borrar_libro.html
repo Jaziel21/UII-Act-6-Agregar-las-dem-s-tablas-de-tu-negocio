@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Borrar Libro - Librería AJMG{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="main-content">
+            <h2 class="mb-4 text-danger">
+                <i class="fas fa-exclamation-triangle me-2"></i>Confirmar Eliminación
+            </h2>
+            
+            <div class="alert alert-danger">
+                <h5 class="alert-heading">¡Precaución!</h5>
+                <p class="mb-0">
+                    Estás a punto de eliminar el libro: <strong>{{ libro.titulo }}</strong>
+                </p>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h6 class="card-title">Información del Libro</h6>
+                    <p><strong>Título:</strong> {{ libro.titulo }}</p>
+                    <p><strong>ISBN:</strong> {{ libro.isbn }}</p>
+                    <p><strong>Género:</strong> {{ libro.get_genero_display }}</p>
+                    <p><strong>Precio:</strong> ${{ libro.precio }}</p>
+                    <p><strong>Stock:</strong> {{ libro.stock }}</p>
+                    <p><strong>Autores:</strong> 
+                        {% for autor in libro.autores.all %}
+                        {{ autor.nombre }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </p>
+                </div>
+            </div>
+            
+            <form method="POST" action="{% url 'confirmar_borrar_libro' libro.id %}">
+                {% csrf_token %}
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a href="{% url 'ver_libros' %}" class="btn btn-secondary me-md-2">
+                        <i class="fas fa-times me-1"></i>Cancelar
+                    </a>
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-trash me-1"></i>Confirmar Eliminación
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio - Librería AJMG{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="main-content">
+            <h2 class="mb-4 text-primary text-center">
+                <i class="fas fa-store me-2"></i>Sistema de Administración Librería AJMG
+            </h2>
+            
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <!-- Tarjetas de navegación -->
+                    <div class="row">
+                        <!-- Autores -->
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-user-pen fa-3x text-primary mb-3"></i>
+                                    <h5 class="card-title">Gestión de Autores</h5>
+                                    <p class="card-text">Administra la información de autores del sistema.</p>
+                                    <a href="{% url 'ver_autores' %}" class="btn btn-primary">Acceder</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Editoriales -->
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-building fa-3x text-primary mb-3"></i>
+                                    <h5 class="card-title">Gestión de Editoriales</h5>
+                                    <p class="card-text">Controla las editoriales y su información.</p>
+                                    <a href="{% url 'ver_editoriales' %}" class="btn btn-primary">Acceder</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Libros -->
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-book fa-3x text-success mb-3"></i>
+                                    <h5 class="card-title">Gestión de Libros</h5>
+                                    <p class="card-text">Administra el catálogo completo de libros.</p>
+                                    <a href="{% url 'ver_libros' %}" class="btn btn-success">Acceder</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <!-- Clientes -->
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-users fa-3x text-success mb-3"></i>
+                                    <h5 class="card-title">Gestión de Clientes</h5>
+                                    <p class="card-text">Administra la base de datos de clientes.</p>
+                                    <a href="{% url 'ver_clientes' %}" class="btn btn-success">Acceder</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Ventas -->
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-shopping-cart fa-3x text-info mb-3"></i>
+                                    <h5 class="card-title">Gestión de Ventas</h5>
+                                    <p class="card-text">Controla el proceso de ventas y facturación.</p>
+                                    <a href="{% url 'ver_ventas' %}" class="btn btn-info">Acceder</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Reportes -->
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-chart-bar fa-3x text-warning mb-3"></i>
+                                    <h5 class="card-title">Reportes y Estadísticas</h5>
+                                    <p class="card-text">Genera reportes del sistema.</p>
+                                    <a href="#" class="btn btn-warning">Acceder</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Información del sistema -->
+            <div class="row mt-5">
+                <div class="col-md-12">
+                    <div class="alert alert-info text-center">
+                        <h6><i class="fas fa-info-circle me-2"></i>Información del Sistema</h6>
+                        <p class="mb-0">
+                            Sistema desarrollado con Django y Bootstrap. Versión 1.0 - Puerto 1194
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

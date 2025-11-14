@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio - Librería AJMG{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="main-content text-center">
+            <h2 class="mb-4 text-primary">
+                <i class="fas fa-store me-2"></i>Bienvenido al Sistema de Librería AJMG
+            </h2>
+            
+            <p class="lead mb-5">
+                Sistema integral de gestión para librerías
+            </p>
+            
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <a href="{% url 'ver_autores' %}" class="btn btn-primary btn-lg w-100">
+                                <i class="fas fa-user-pen me-2"></i>Autores
+                            </a>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <a href="{% url 'ver_editoriales' %}" class="btn btn-primary btn-lg w-100">
+                                <i class="fas fa-building me-2"></i>Editoriales
+                            </a>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <a href="{% url 'ver_libros' %}" class="btn btn-success btn-lg w-100">
+                                <i class="fas fa-book me-2"></i>Libros
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <a href="{% url 'ver_clientes' %}" class="btn btn-success btn-lg w-100">
+                                <i class="fas fa-users me-2"></i>Clientes
+                            </a>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <a href="{% url 'ver_ventas' %}" class="btn btn-info btn-lg w-100">
+                                <i class="fas fa-shopping-cart me-2"></i>Ventas
+                            </a>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <a href="#" class="btn btn-warning btn-lg w-100">
+                                <i class="fas fa-chart-bar me-2"></i>Reportes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-5">
+                <div class="alert alert-info">
+                    <h6><i class="fas fa-info-circle me-2"></i>Información del Sistema</h6>
+                    <p class="mb-0">
+                        Sistema desarrollado con Django y Bootstrap. Versión 1.0 - Puerto 1194
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

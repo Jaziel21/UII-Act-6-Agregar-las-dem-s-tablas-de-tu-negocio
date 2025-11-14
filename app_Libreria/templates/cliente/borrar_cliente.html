@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Borrar Cliente - Librería AJMG{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="main-content">
+            <h2 class="mb-4 text-danger">
+                <i class="fas fa-exclamation-triangle me-2"></i>Confirmar Eliminación
+            </h2>
+            
+            <div class="alert alert-danger">
+                <h5 class="alert-heading">¡Precaución!</h5>
+                <p class="mb-0">
+                    Estás a punto de eliminar al cliente: <strong>{{ cliente.nombre }} {{ cliente.apellido }}</strong>
+                </p>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h6 class="card-title">Información del Cliente</h6>
+                    <p><strong>Nombre:</strong> {{ cliente.nombre }} {{ cliente.apellido }}</p>
+                    <p><strong>Email:</strong> {{ cliente.email }}</p>
+                    <p><strong>Teléfono:</strong> {{ cliente.telefono|default:"No especificado" }}</p>
+                    <p><strong>Fecha Registro:</strong> {{ cliente.fecharegistro|date:"d/m/Y" }}</p>
+                </div>
+            </div>
+            
+            <form method="POST" action="{% url 'confirmar_borrar_cliente' cliente.clienteid %}">
+                {% csrf_token %}
+                <div class="d-grid gap-2 d-md-flex justifycontent-md-end">
+                    <a href="{% url 'ver_clientes' %}" class="btn btn-secondary me-md-2">
+                        <i class="fas fa-times me-1"></i>Cancelar
+                    </a>
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-trash me-1"></i>Confirmar Eliminación
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

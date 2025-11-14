@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block title %}Agregar Libro - Librería AJMG{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="main-content">
+            <h2 class="mb-4 text-success">
+                <i class="fas fa-book-medical me-2"></i>Agregar Nuevo Libro
+            </h2>
+            
+            <form method="POST">
+                {% csrf_token %}
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="titulo" class="form-label">Título del libro *</label>
+                        <input type="text" class="form-control" id="titulo" name="titulo" required>
+                    </div>
+                    
+                    <div class="col-md-6 mb-3">
+                        <label for="isbn" class="form-label">ISBN *</label>
+                        <input type="text" class="form-control" id="isbn" name="isbn" required maxlength="13">
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="genero" class="form-label">Género *</label>
+                        <select class="form-select" id="genero" name="genero" required>
+                            <option value="">Seleccionar género...</option>
+                            <option value="FIC">Ficción</option>
+                            <option value="ROM">Romance</option>
+                            <option value="TER">Terror</option>
+                            <option value="CIE">Ciencia Ficción</option>
+                            <option value="FAN">Fantasía</option>
+                            <option value="HIS">Histórico</option>
+                            <option value="BIO">Biografía</option>
+                            <option value="INF">Infantil</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <label for="fecha_publicacion" class="form-label">Fecha de publicación *</label>
+                        <input type="date" class="form-control" id="fecha_publicacion" name="fecha_publicacion" required>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <label for="precio" class="form-label">Precio *</label>
+                        <input type="number" class="form-control" id="precio" name="precio" step="0.01" min="0" required>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="stock" class="form-label">Cantidad en stock *</label>
+                        <input type="number" class="form-control" id="stock" name="stock" min="0" required>
+                    </div>
+                    
+                    <div class="col-md-6 mb-3">
+                        <label for="editorial" class="form-label">Editorial</label>
+                        <select class="form-select" id="editorial" name="editorial">
+                            <option value="">Seleccionar editorial...</option>
+                            {% for editorial in editoriales %}
+                            <option value="{{ editorial.editorialid }}">{{ editorial.nombreeditorial }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Autores *</label>
+                    <div style="max-height: 150px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; border-radius: 5px;">
+                        {% for autor in autores %}
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="autores" value="{{ autor.id }}" id="autor{{ autor.id }}">
+                            <label class="form-check-label" for="autor{{ autor.id }}">
+                                {{ autor.nombre }}
+                            </label>
+                        </div>
+                        {% empty %}
+                        <p class="text-muted">No hay autores registrados. <a href="{% url 'agregar_autor' %}">Agregar autor primero</a></p>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="descripcion" class="form-label">Descripción</label>
+                    <textarea class="form-control" id="descripcion" name="descripcion" rows="4" 
+                              placeholder="Descripción del libro..."></textarea>
+                </div>
+                
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a href="{% url 'ver_libros' %}" class="btn btn-secondary me-md-2">
+                        <i class="fas fa-arrow-left me-1"></i>Cancelar
+                    </a>
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-save me-1"></i>Guardar Libro
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

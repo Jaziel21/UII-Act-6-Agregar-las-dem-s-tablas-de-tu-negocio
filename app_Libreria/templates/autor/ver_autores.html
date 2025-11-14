@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %}Ver Autores - Librería AJMG{% endblock %}
+
+{% block content %}
+<div class="main-content">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-primary">
+            <i class="fas fa-users me-2"></i>Lista de Autores
+        </h2>
+        <a href="{% url 'agregar_autor' %}" class="btn btn-primary">
+            <i class="fas fa-plus me-1"></i>Agregar Autor
+        </a>
+    </div>
+    
+    {% if autores %}
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Nacionalidad</th>
+                    <th>Fecha Nacimiento</th>
+                    <th>Fecha Fallecimiento</th>
+                    <th>Email</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for autor in autores %}
+                <tr>
+                    <td>{{ autor.id }}</td>
+                    <td><strong>{{ autor.nombre }}</strong></td>
+                    <td>{{ autor.nacionalidad }}</td>
+                    <td>{{ autor.fecha_nacimiento|date:"d/m/Y" }}</td>
+                    <td>{{ autor.fecha_fallecimiento|date:"d/m/Y"|default:"-" }}</td>
+                    <td>{{ autor.email|default:"-" }}</td>
+                    <td>
+                        {% if autor.activo %}
+                        <span class="badge bg-success">Activo</span>
+                        {% else %}
+                        <span class="badge bg-danger">Inactivo</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <div class="btn-group btn-group-sm">
+                            <a href="{% url 'actualizar_autor' autor.id %}" class="btn btn-outline-warning btn-sm">
+                                <i class="fas fa-edit me-1"></i>Editar
+                            </a>
+                            <a href="{% url 'borrar_autor' autor.id %}" class="btn btn-outline-danger btn-sm">
+                                <i class="fas fa-trash me-1"></i>Eliminar
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="alert alert-info text-center">
+        <i class="fas fa-info-circle me-2"></i>
+        No hay autores registrados en el sistema.
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

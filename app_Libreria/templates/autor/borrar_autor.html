@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Borrar Autor - Librería AJMG{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="main-content">
+            <h2 class="mb-4 text-danger">
+                <i class="fas fa-exclamation-triangle me-2"></i>Confirmar Eliminación
+            </h2>
+            
+            <div class="alert alert-danger">
+                <h5 class="alert-heading">¡Precaución!</h5>
+                <p class="mb-0">
+                    Estás a punto de eliminar al autor: <strong>{{ autor.nombre }}</strong>
+                </p>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h6 class="card-title">Información del Autor</h6>
+                    <p><strong>Nombre:</strong> {{ autor.nombre }}</p>
+                    <p><strong>Nacionalidad:</strong> {{ autor.nacionalidad }}</p>
+                    <p><strong>Email:</strong> {{ autor.email|default:"No especificado" }}</p>
+                </div>
+            </div>
+            
+            <form method="POST" action="{% url 'confirmar_borrar_autor' autor.id %}">
+                {% csrf_token %}
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a href="{% url 'ver_autores' %}" class="btn btn-secondary me-md-2">
+                        <i class="fas fa-times me-1"></i>Cancelar
+                    </a>
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-trash me-1"></i>Confirmar Eliminación
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

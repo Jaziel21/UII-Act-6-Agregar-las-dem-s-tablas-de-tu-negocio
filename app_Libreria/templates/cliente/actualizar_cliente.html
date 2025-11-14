@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Actualizar Cliente - Librería AJMG{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="main-content">
+            <h2 class="mb-4 text-warning">
+                <i class="fas fa-edit me-2"></i>Actualizar Cliente
+            </h2>
+            
+            <form method="POST" action="{% url 'realizar_actualizacion_cliente' cliente.clienteid %}">
+                {% csrf_token %}
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="nombre" class="form-label">Nombre *</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" 
+                               value="{{ cliente.nombre }}" required>
+                    </div>
+                    
+                    <div class="col-md-6 mb-3">
+                        <label for="apellido" class="form-label">Apellido *</label>
+                        <input type="text" class="form-control" id="apellido" name="apellido" 
+                               value="{{ cliente.apellido }}" required>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="email" class="form-label">Email *</label>
+                        <input type="email" class="form-control" id="email" name="email" 
+                               value="{{ cliente.email }}" required>
+                    </div>
+                    
+                    <div class="col-md-6 mb-3">
+                        <label for="telefono" class="form-label">Teléfono</label>
+                        <input type="text" class="form-control" id="telefono" name="telefono" 
+                               value="{{ cliente.telefono }}">
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="direccion" class="form-label">Dirección</label>
+                    <textarea class="form-control" id="direccion" name="direccion" rows="3">{{ cliente.direccion }}</textarea>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="preferenciasgenero" class="form-label">Preferencias de Género</label>
+                    <textarea class="form-control" id="preferenciasgenero" name="preferenciasgenero" rows="3">{{ cliente.preferenciasgenero }}</textarea>
+                </div>
+                
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a href="{% url 'ver_clientes' %}" class="btn btn-secondary me-md-2">
+                        <i class="fas fa-arrow-left me-1"></i>Cancelar
+                    </a>
+                    <button type="submit" class="btn btn-warning">
+                        <i class="fas fa-save me-1"></i>Actualizar Cliente
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
